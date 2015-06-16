@@ -3,7 +3,7 @@
   "main": "./lib/js_refactor",
   "version": "0.4.1",
   "description": "Refactoring support for JavaScript",
-  "repository": "https://github.com/minodisk/js-refactor",
+  "repository": "https://github.com/hax/js-refactor",
   "license": "MIT",
   "auther": {
     "name": "Daisuke Mino",
