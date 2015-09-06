@@ -1,4 +1,4 @@
-# JS Refactor Package [![Build Status](https://travis-ci.org/minodisk/js-refactor.svg?branch=master)](https://travis-ci.org/minodisk/js-refactor)
+# JS Refactor Package [![Build Status](https://travis-ci.org/hax/js-refactor.svg?branch=master)](https://travis-ci.org/hax/js-refactor)
 
 JavaScript refactoring language plugin for [Atom](https://atom.io/).
 **This package requires [refactor](https://atom.io/packages/refactor) package.**
