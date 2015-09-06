@@ -32,14 +32,16 @@
     // Universal Module Definition (UMD) to support AMD, CommonJS/Node.js,
     // Rhino, and plain browser loading.
     if (typeof define === 'function' && define.amd) {
-        define('esrefactor', ['exports', 'esprima', 'estraverse', 'escope'], factory);
+        define('esrefactor', ['exports', 'esprima', 'estraverse', 'escope', 'debug'], factory);
     } else if (typeof exports !== 'undefined') {
-        factory(exports, require('esprima'), require('estraverse'), require('escope'));
+        factory(exports, require('../lib/parser'), require('estraverse'), require('escope'), require('debug'));
     } else {
-        factory((root.esrefactor = {}), esprima, estraverse, escope);
+        factory((root.esrefactor = {}), esprima, estraverse, escope, debug);
     }
-}(this, function (exports, esprima, estraverse, escope) {
+}(this, function (exports, esprima, estraverse, escope, debug) {
     'use strict';
+
+    var d = debug('esrefactor')
 
     function Context(code) {
         this._code = null;

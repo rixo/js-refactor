@@ -1,6 +1,7 @@
 { Context } = require '../vender/esrefactor'
-{ parse } = require 'esprima'
+{ parse } = require './parser'
 { Range } = require 'atom'
+d = (require 'debug') 'ripper'
 
 module.exports =
 class Ripper
@@ -10,6 +11,8 @@ class Ripper
 
   @scopeNames: [
     'source.js'
+    'source.js.jsx'
+    'source.babel'
   ]
 
   parseOptions:
@@ -17,6 +20,7 @@ class Ripper
     range: true
     tokens: true
     tolerant: true
+    allowReturnOutsideFunction: true
 
   constructor: ->
     @context = new Context
@@ -28,6 +32,7 @@ class Ripper
     try
       syntax = parse code, @parseOptions
       @context.setCode syntax
+      d 'parse', code
       rLine = /.*(?:\r?\n|\n?\r)/g
       @lines = (result[0].length while (result = rLine.exec code)?)
       callback() if callback
@@ -39,17 +44,18 @@ class Ripper
           message: description
         ] if callback
       else
-        # Logs uncaught parse error.
-        console.warn err
+        d 'parse error', err
         callback() if callback
 
   find: ({ row, column }) ->
+    d 'find', row, column
     pos = 0
     while --row >= 0
       pos += @lines[row]
     pos += column
 
     identification = @context.identify pos
+    d 'identification at', pos, identification
     return [] unless identification
 
     { declaration, references } = identification
