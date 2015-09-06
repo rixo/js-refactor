@@ -1,5 +1,6 @@
 { Ripper } = require '../lib/js_refactor'
 { Range } = require 'atom'
+{ inspect } = require 'util'
 
 expectNoRefs = (ripper, range) ->
   resultRanges = ripper.find range
@@ -7,8 +8,9 @@ expectNoRefs = (ripper, range) ->
   .toHaveLength 0
 
 expectEqualRefs = (ripper, ranges...) ->
+  # console.log inspect ranges
   resultRanges = ripper.find ranges[0].start
-  console.log require('util').inspect resultRanges
+  # console.log inspect resultRanges
   ranges.sort (a, b) ->
     return delta if (delta = a.start.row - b.start.row) isnt 0
     a.start.column - b.start.column
