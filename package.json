@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "babylon": "^5.8.23",
-    "debug": "^2.2.0",
+    "debug": "hax/debug",
     "escope": "^3.2.0",
     "estraverse": "^4.1.0"
   },
