@@ -1,7 +1,7 @@
 {
   "name": "js-refactor",
   "main": "./lib/js_refactor",
-  "version": "0.4.5",
+  "version": "0.6.0",
   "description": "Refactoring support for JavaScript",
   "repository": "https://github.com/hax/js-refactor",
   "license": "MIT",
@@ -9,9 +9,16 @@
     "name": "Daisuke Mino",
     "url": "http://dsk.mn"
   },
+  "contributors": [
+    {
+      "name": "HE Shi-Jun (hax)",
+      "email": "johnhax@gmail.com",
+      "url": "http://johnhax.net/"
+    }
+  ],
   "engines": {
-    "atom": ">0.50.0",
-    "refactor": "*"
+    "atom": ">1.0.0",
+    "refactor": "^0.6.0"
   },
   "scripts": {
     "test": "apm test"
@@ -23,8 +30,8 @@
     "estraverse": "^4.1.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-este-watch": "~0.1.15",
-    "grunt-notify": "^0.4.0"
+    "grunt": "~0.4",
+    "grunt-este-watch": "~0.1",
+    "grunt-notify": "^0.4"
   }
 }
