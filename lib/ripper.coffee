@@ -46,12 +46,11 @@ class Ripper
 
   parse: (code, callback) ->
     try
-      syntax = parse code, @parseOptions
-      @context.setCode syntax
       d 'parse', code
       rLine = /.*(?:\r?\n|\n?\r)/g
       @lines = (result[0].length while (result = rLine.exec code)?)
       @parseError = null
+      @context.setCode code, @parseOptions
       callback() if callback
     catch err
       { loc, message } = @parseError = err
