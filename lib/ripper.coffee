@@ -20,7 +20,23 @@ class Ripper
     range: true
     tokens: true
     tolerant: true
+    sourceType: 'module'
     allowReturnOutsideFunction: true
+    features:
+      # stage 2
+      'es7.asyncFunctions': true
+      'es7.exponentiationOperator': true
+      'es7.objectRestSpread': true
+      # stage 1
+      'es7.decorators': true
+      'es7.exportExtensions': true
+      'es7.trailingFunctionCommas': true
+      # TODO: wait estraverse support the new Node types (eg. BindingNode)
+      # stage 0
+      # 'es7.classProperties': true
+      # 'es7.comprehensions': true
+      # 'es7.doExpressions': true
+      # 'es7.functionBind': true
 
   constructor: ->
     @context = new Context
@@ -35,19 +51,23 @@ class Ripper
       d 'parse', code
       rLine = /.*(?:\r?\n|\n?\r)/g
       @lines = (result[0].length while (result = rLine.exec code)?)
+      @parseError = null
       callback() if callback
     catch err
-      { lineNumber, column, description } = err
-      if lineNumber? and column? and description?
+      { loc, message } = @parseError = err
+      if loc? and message?
+        { line, column } = loc
+        lineNumber = line - 1
         callback [
-          range  : new Range [lineNumber - 1, column], [lineNumber - 1, column]
-          message: description
+          range  : new Range [lineNumber, column], [lineNumber, column + 1]
+          message: message
         ] if callback
       else
-        d 'parse error', err
+        d 'unknown error', err
         callback() if callback
 
   find: ({ row, column }) ->
+    return if @parseError?
     d 'find', row, column
     pos = 0
     while --row >= 0
