@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "babylon": "^5.8.23",
-    "debug": "hax/debug",
+    "debug": "git+https://github.com/hax/debug",
     "escope": "^3.2.0",
     "estraverse": "^4.1.0"
   },
