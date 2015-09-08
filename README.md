@@ -12,7 +12,7 @@ You can install from the preference pane.
 ## ES6+ Support
 
 Start from v0.6.0, we already have experimental support of ES6+,
-track #6 for more details.
+track [#6](https://github.com/hax/js-refactor/issues/6) for more details.
 
 
 ## Related Packages
