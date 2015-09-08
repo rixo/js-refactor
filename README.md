@@ -34,4 +34,4 @@ track [#6](https://github.com/hax/js-refactor/issues/6) for more details.
 * Add debug util
 * Update travis config as latest atom/ci
 
-* [Changelog of old versions](CHANGELOG.md)
+### [Changelog of old versions](CHANGELOG.md)
