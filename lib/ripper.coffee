@@ -37,6 +37,12 @@ class Ripper
       # 'es7.comprehensions': true
       # 'es7.doExpressions': true
       # 'es7.functionBind': true
+    # Other options which maybe useful
+    # ecmaVersion: Infinity
+    # allowHashBang: true
+    # plugins:
+    #   jsx: true
+    #   flow: true
 
   constructor: ->
     @context = new Context
