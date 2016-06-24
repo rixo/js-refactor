@@ -77,11 +77,26 @@ class Ripper
       pos += @lines[row]
     pos += column
 
-    identification = @context.identify pos
-    d 'identification at', pos, identification
-    return [] unless identification
+    binding = @context.identify pos
+    return [] unless binding
 
-    ranges = identification.referencePaths.map (p) ->
+    declRange =
+      if binding.path.isImportSpecifier()
+        { imported, local } = binding.path.node
+        range = Ripper.locToRange local.loc
+        range.shorthand = local.start == imported.start
+        range.key = Ripper.locToRange imported.loc if not range.shorthand
+        range.delimiter = ' as '
+        range
+      else
+        Ripper.locToRange binding.identifier.loc
+
+    ranges = [declRange]
+
+    # filter undefined for ImportDefault
+    refPaths = binding.referencePaths.filter (p) -> p
+
+    ranges = ranges.concat refPaths.map (p) ->
       range = Ripper.locToRange p.node.loc
       if p.parentPath.isObjectProperty()
         { key, shorthand } = p.parentPath.node
@@ -90,14 +105,7 @@ class Ripper
         range.delimiter = ': '
       range
 
-    p = identification.path
-    if p.isImportSpecifier()
-      { imported, local } = p.node
-      range = Ripper.locToRange local.loc
-      range.shorthand = local.start == imported.start
-      d range.shorthand, local, imported
-      range.key = Ripper.locToRange imported.loc if not range.shorthand
-      range.delimiter = ' as '
-      ranges.push range
+    ranges = ranges.concat binding.constantViolations.map (p) ->
+      Ripper.locToRange p.node.left.loc
 
     ranges
