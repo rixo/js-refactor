@@ -23,6 +23,14 @@ track [#6](https://github.com/hax/js-refactor/issues/6) for more details.
 
 ## Changelog
 
+### v0.7.0 on 2016-06-24
+* Upgrade to babylon 6, enable all ES next syntax (include stage 0 features like
+	bind operator) which babel support. Babylon 6 is not compatible with estools,
+	so we change to babel-traverse, and rewrite and simplify the implementations,
+	it should also fix all issues from underlying. (Of coz it may introduce new
+	issues :)
+* Implement correct renaming of object shorthand and import alias.
+
 ### v0.6.0 on 2015-09-08
 
 * Require Atom >=1.0.0, refactor ^0.6.0
