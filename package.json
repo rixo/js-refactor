@@ -24,7 +24,7 @@
     "test": "apm test"
   },
   "dependencies": {
-    "babel-traverse": "^6.9.0",
+    "babel-traverse": "^6.10.4",
     "babylon": "^6.8.1",
     "debug": "git+https://github.com/hax/debug"
   },
