@@ -18,16 +18,15 @@
   ],
   "engines": {
     "atom": ">=1.0.0",
-    "refactor": "^0.6.0"
+    "refactor": "^0.8.0"
   },
   "scripts": {
     "test": "apm test"
   },
   "dependencies": {
-    "babylon": "^5.8.23",
-    "debug": "git+https://github.com/hax/debug",
-    "escope": "^3.2.0",
-    "estraverse": "^4.1.0"
+    "babel-traverse": "^6.10.4",
+    "babylon": "^6.8.1",
+    "debug": "git+https://github.com/hax/debug"
   },
   "devDependencies": {
     "grunt": "^0.4",
