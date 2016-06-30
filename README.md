@@ -23,8 +23,13 @@ track [#6](https://github.com/hax/js-refactor/issues/6) for more details.
 
 ## Changelog
 
+### v0.7.2 on 2016-06-30
+*	Use original debug package to solve install failures, fix #8, #15
+* Support different styles for references/mutations/declaration
+* Fix #14
+
 ### v0.7.0 on 2016-06-24
-* Upgrade to babylon 6, enable all ES next syntax (include stage 0 features like
+*	Upgrade to babylon 6, enable all ES next syntax (include stage 0 features like
 	bind operator) and JSX, Flow... all features babel support.
 	Babylon 6 is not compatible with estools, so we change to babel-traverse,
 	and rewrite and simplify the implementations, it should also fix all issues
