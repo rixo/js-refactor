@@ -106,6 +106,7 @@ class Ripper
       range
 
     ranges = ranges.concat binding.constantViolations.map (p) ->
-      Ripper.locToRange p.node.left.loc
-
+      node = p.node.left || p.node
+      range = Ripper.locToRange node.loc
+      range
     ranges
