@@ -90,6 +90,7 @@ class Ripper
         range
       else
         Ripper.locToRange binding.identifier.loc
+    declRange.type = 'decl'
 
     ranges = [declRange]
 
@@ -98,6 +99,7 @@ class Ripper
 
     ranges = ranges.concat refPaths.map (p) ->
       range = Ripper.locToRange p.node.loc
+      range.type = 'ref'
       if p.parentPath.isObjectProperty()
         { key, shorthand } = p.parentPath.node
         range.shorthand = shorthand
@@ -108,5 +110,6 @@ class Ripper
     ranges = ranges.concat binding.constantViolations.map (p) ->
       node = p.node.left || p.node
       range = Ripper.locToRange node.loc
+      range.type = 'mut'
       range
     ranges
