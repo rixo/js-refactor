@@ -1,7 +1,7 @@
 Context = require './Context'
 { parse } = require './parser'
 { Range } = require 'atom'
-d = (require 'debug') 'ripper'
+d = (require 'debug/browser') 'ripper'
 
 module.exports =
 class Ripper

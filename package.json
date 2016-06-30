@@ -26,7 +26,7 @@
   "dependencies": {
     "babel-traverse": "^6.10.4",
     "babylon": "^6.8.1",
-    "debug": "git+https://github.com/hax/debug"
+    "debug": "^2.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4",
