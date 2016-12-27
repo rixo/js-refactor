@@ -1,7 +1,7 @@
 Context = require './Context'
 { parse } = require './parser'
 { Range } = require 'atom'
-d = (require 'debug/browser') 'ripper'
+d = (require './debug') 'js-refactor:ripper'
 
 module.exports =
 class Ripper
