@@ -16,31 +16,11 @@ class Ripper
   ]
 
   parseOptions:
-    loc: true
-    range: true
-    tokens: true
-    tolerant: true
     sourceType: 'module'
+    allowImportExportEverywhere: true
     allowReturnOutsideFunction: true
-    plugins: [
-      'asyncFunctions'
-      'asyncGenerators'
-      'classConstructorCall'
-      'classProperties'
-      'decorators'
-      'doExpressions'
-      'exponentiationOperator'
-      'exportExtensions'
-      'flow'
-      'functionBind'
-      'functionSent'
-      'jsx'
-      'objectRestSpread'
-      'trailingFunctionCommas'
-    ]
-    # Other options which maybe useful
-    # ecmaVersion: Infinity
-    # allowHashBang: true
+    allowSuperOutsideMethod: true
+    plugins: ['*']
 
   constructor: ->
     @context = new Context
