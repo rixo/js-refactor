@@ -1,6 +1,7 @@
 Context = require './Context'
 { parse } = require './parser'
 { Range } = require 'atom'
+{ lines } = require './util'
 d = (require './debug') 'js-refactor:ripper'
 
 module.exports =
@@ -32,7 +33,7 @@ class Ripper
     try
       # d 'parse', code
       rLine = /.*(?:\r?\n|\n?\r)/g
-      @lines = (result[0].length while (result = rLine.exec code)?)
+      @lines = lines(code)
       @parseError = null
       @context.setCode code, @parseOptions
       callback() if callback
