@@ -66,6 +66,10 @@ class Ripper
         range.key = Ripper.locToRange imported.loc if not range.shorthand
         range.delimiter = ' as '
         range
+      else if binding.identifier.typeAnnotation
+        Ripper.locToRange
+          start: binding.identifier.loc.start
+          end:   binding.identifier.typeAnnotation.loc.start
       else
         Ripper.locToRange binding.identifier.loc
     declRange.type = 'decl'
