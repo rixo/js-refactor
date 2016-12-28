@@ -1,7 +1,7 @@
 Context = require './Context'
 { parse } = require './parser'
 { Range } = require 'atom'
-{ lines } = require './util'
+{ locator } = require './util'
 d = (require './debug') 'js-refactor:ripper'
 
 module.exports =
@@ -33,7 +33,7 @@ class Ripper
     try
       # d 'parse', code
       rLine = /.*(?:\r?\n|\n?\r)/g
-      @lines = lines(code)
+      @locator = locator(code)
       @parseError = null
       @context.setCode code, @parseOptions
       callback() if callback
@@ -53,12 +53,9 @@ class Ripper
   find: ({ row, column }) ->
     return if @parseError?
     d 'find', row, column
-    pos = 0
-    while --row >= 0
-      pos += @lines[row]
-    pos += column
 
-    binding = @context.identify pos
+    loc = @locator row, column
+    binding = @context.identify loc
     return [] unless binding
 
     declRange =
