@@ -72,8 +72,9 @@ class Ripper
 
     ranges = [declRange]
 
-    # filter undefined for ImportDefault
-    refPaths = binding.referencePaths.filter (p) -> p
+    refPaths = binding.referencePaths
+      .filter (p) => p  # filter undefined for ImportDefault
+      .filter (p) => !p.isExportDeclaration()  # filter exports
 
     ranges = ranges.concat refPaths.map (p) ->
       range = Ripper.locToRange p.node.loc
