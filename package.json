@@ -5,7 +5,7 @@
   "description": "Refactoring support for JavaScript",
   "repository": "https://github.com/hax/js-refactor",
   "license": "MIT",
-  "auther": {
+  "author": {
     "name": "Daisuke Mino",
     "url": "http://dsk.mn"
   },
