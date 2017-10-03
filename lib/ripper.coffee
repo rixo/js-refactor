@@ -66,6 +66,10 @@ class Ripper
         range.key = Ripper.locToRange imported.loc if not range.shorthand
         range.delimiter = ' as '
         range
+      else if binding.path.isPattern()
+        Ripper.locToRange
+          start: binding.identifier.loc.start
+          end:   binding.identifier.loc.end
       else if binding.identifier.typeAnnotation
         Ripper.locToRange
           start: binding.identifier.loc.start
@@ -77,6 +81,7 @@ class Ripper
     ranges = [declRange]
 
     refPaths = binding.referencePaths
+      .filter (p) => p.node isnt binding.identifier # filter ObjectPattern
       .filter (p) => p  # filter undefined for ImportDefault
       .filter (p) => !p.isExportDeclaration()  # filter exports
 
